@@ -29,9 +29,6 @@ class WaterMeter:
             raise Exception("WaterMeter getCumulativeDischarge error--"+", flag="+str(RevMessFlag)+","+message) 
         
 
-for i in range(10,17):
-    print(i)
-
 
 
 

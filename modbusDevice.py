@@ -192,4 +192,24 @@ class modbusDevice:
         return RevMessFlag,error
 
 
+    async def uart_send(self,cmd):
+        await self.uart_lock.acquire()
+        self.uart2.write(cmd)
+        await asyncio.sleep_ms(300)
+        if self.uart2.any():
+            rev = self.uart2.read()
+        else:
+            rev = None
+        self.uart_lock.release()
+        return rev
+
+    async def uart_rev(self):
+        await self.uart_lock.acquire()
+        if self.uart.any():
+            rev = self.uart.read()
+        else:
+            rev = None
+        self.uart_lock.release()
+        return rev
+    
     
